@@ -15,8 +15,8 @@ in-app browser (iOS WebKit).
   portrait, selected work, pinned experience timeline, services, side builds,
   a short Off the clock band that points to `/life`, contact with the orb.
 - `/life` Quick and short. "Hey, I'm Bassey." A deck of favorite photos, links
-  to `/photos` and @bassey.archive, and a one-line "Book a shoot".
-- `/photos` Full archive (20 photos, filters, lightbox).
+  to `/photos` and @bassey.jpeg, and a one-line "Book a shoot".
+- `/photos` Full archive (all photos, filters, lightbox).
 
 ## Tokens (tailwind.config.ts)
 

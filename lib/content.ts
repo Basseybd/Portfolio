@@ -13,8 +13,8 @@ export const site = {
   github: "https://github.com/Basseybd",
   instagram: "https://www.instagram.com/bassey.bd/",
   instagramHandle: "@bassey.bd",
-  photoArchive: "https://www.instagram.com/bassey.archive/",
-  photoArchiveHandle: "@bassey.archive",
+  photoArchive: "https://www.instagram.com/bassey.jpeg/",
+  photoArchiveHandle: "@bassey.jpeg",
   url: "https://basseyduke.io",
 };
 
@@ -362,6 +362,18 @@ export const photos: Photo[] = [
     category: "Nights out",
     settings: "f/2.0, 1/34s, ISO 5000",
     alt: "Two friends laughing behind a DJ booth in red light",
+    featured: true,
+  },
+  {
+    slug: "2026-eighty-minutes",
+    accent: "#8C5A2E",
+    width: 1600,
+    height: 2400,
+    title: "80 minutes",
+    place: "2026",
+    category: "Portraits",
+    settings: "f/2.0, 1/60s, ISO 400",
+    alt: "A friend with a shaved head and tattooed hands sits on a stool in a warm living room, a giant CD clock and a shelf of bottles behind him",
     featured: true,
   },
   {
