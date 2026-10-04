@@ -52,11 +52,11 @@ export default function ContactForm() {
 
       {state.succeeded ? (
         <p className="font-display text-[1.75rem] font-medium leading-snug">
-          Message sent. I&rsquo;ll reply to the email you gave within two business days.
+          Message sent. I&rsquo;ll get back to you at the email you gave.
         </p>
       ) : (
         <form onSubmit={handleSubmit} onInput={onInput} className="space-y-8">
-          <input type="hidden" name="_subject" value="New project inquiry from basseyduke.io" />
+          <input type="hidden" name="_subject" value="New message from basseyduke.io" />
           <div className="grid gap-8 sm:grid-cols-2">
             <label className="block">
               <span className="text-[0.9rem] text-steel">Name</span>
@@ -79,12 +79,12 @@ export default function ContactForm() {
             </label>
           </div>
           <label className="block">
-            <span className="text-[0.9rem] text-steel">Project details</span>
+            <span className="text-[0.9rem] text-steel">Message</span>
             <textarea
               name="message"
               rows={5}
               required
-              placeholder="What you’re building, what’s stuck, and when you need it…"
+              placeholder="What’s on your mind…"
               className={`${field} resize-y`}
             />
             <ValidationError prefix="Message" field="message" errors={state.errors} className={errorClass} />

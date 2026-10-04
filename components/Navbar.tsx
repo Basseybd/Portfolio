@@ -8,7 +8,7 @@ import { photos, site } from "@/lib/content";
 const links = [
   { href: "/work#work", label: "Work" },
   { href: "/work#experience", label: "Experience" },
-  { href: "/work#services", label: "Services" },
+  { href: "/work#focus", label: "Focus" },
   { href: "/work#contact", label: "Contact" },
 ];
 const lifeColor = photos.find((p) => p.featured)?.accent;

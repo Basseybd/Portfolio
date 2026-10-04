@@ -11,11 +11,11 @@ export default function Contact() {
             id="contact-title"
             className="font-display text-[2.6rem] font-medium leading-[1.08] tracking-[-0.015em] sm:text-[3.3rem]"
           >
-            Have an AI feature that needs to ship?
+            Say hi.
           </h2>
           <p className="mt-6 max-w-[28rem] text-[1.0625rem] leading-relaxed text-steel">
-            Tell me what you&rsquo;re building, where it&rsquo;s stuck, and your
-            timeline. I reply within two business days.
+            Questions, ideas, or want to trade notes on AI or photos? Send a
+            message. I usually reply within a couple of days.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
             <a

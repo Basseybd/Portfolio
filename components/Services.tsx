@@ -2,18 +2,17 @@ import { services } from "@/lib/content";
 
 export default function Services() {
   return (
-    <section id="services" aria-labelledby="services-title" className="bg-paper">
+    <section id="focus" aria-labelledby="focus-title" className="bg-paper">
       <div className="page py-24 sm:py-32">
         <div className="grid gap-5 lg:grid-cols-12 lg:gap-x-12">
           <h2
-            id="services-title"
+            id="focus-title"
             className="font-display text-[2.6rem] font-medium leading-[1.05] tracking-[-0.015em] sm:text-[3.25rem] lg:col-span-5"
           >
-            What I take on
+            What I work on
           </h2>
           <p className="max-w-[32rem] text-[1.0625rem] leading-relaxed text-stone lg:col-span-6 lg:col-start-7 lg:pt-4">
-            Contract or part-time work, remote or in New York. Best fit: teams
-            that want AI in a real product, not a demo.
+            The work I like most: AI in a real product, not a demo.
           </p>
         </div>
 

@@ -13,7 +13,7 @@ import { site } from "@/lib/content";
 
 const title = "Bassey Duke | AI-focused Senior Software Engineer";
 const description =
-  "Senior software engineer in New York building AI features and production systems with TypeScript, React, Node.js, and AWS. Photographer on the side. Open to AI contract and part-time work.";
+  "Senior software engineer in New York building AI features and production systems with TypeScript, React, Node.js, and AWS. Photographer on the side.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
