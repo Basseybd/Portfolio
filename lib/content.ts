@@ -83,7 +83,7 @@ export const timeline: Milestone[] = [
     year: "2025",
     title: "Senior Software Engineer",
     org: "Capital One",
-    detail: "AI features in production, a 67% cut in forced logouts, and builds from minutes to seconds.",
+    detail: "AI features in production, plus reliability and tooling work across the stack.",
   },
 ];
 
@@ -101,40 +101,40 @@ export const selectedWork: Work[] = [
     title: "AI message assistant",
     outcome: "Live in production with real users.",
     detail:
-      "Reviews outgoing messages for typos, wrong information, and sensitive data before they go out. I built the human-in-the-loop review interface, the REST APIs behind it, and the MySQL data layer.",
-    stack: ["LLM integration", "React", "Node.js", "MySQL"],
+      "An AI assistant that checks messages for mistakes and sensitive details before they go out. I built the review experience that keeps a person in the loop, plus the APIs and data behind it.",
+    stack: ["LLM integration", "React", "Node.js"],
   },
   {
-    verb: "Co-built, 9-person team",
+    verb: "Co-built",
     title: "Preference-aware chat prototype",
-    outcome: "2nd place in an org-wide hackathon.",
+    outcome: "2nd place in an internal hackathon.",
     detail:
-      "A Claude prototype that picks up user preferences from conversations and asks the follow-up a good person would. Mention seafood, and it asks what kind. The design moved on to production teams.",
+      "A Claude prototype that picks up preferences from conversation and asks the follow-up a good person would. Mention seafood, and it asks what kind.",
     stack: ["Claude", "TypeScript", "Prompt design"],
   },
   {
     verb: "Led",
-    title: "Session reliability fix",
-    outcome: "Forced logouts down 67%.",
+    title: "Sign-in reliability",
+    outcome: "Unexpected sign-outs cut by more than half.",
     detail:
-      "Users were getting signed out mid-task. I traced it to four separate root causes in the session lifecycle using log analysis, then fixed each one, including a cross-tab sync so open tabs stop fighting each other.",
-    stack: ["AWS CloudWatch", "Redis", "Node.js", "React"],
+      "People were getting signed out in the middle of their work. I tracked down why and fixed it, so sessions now hold up, even across open tabs.",
+    stack: ["Node.js", "React", "AWS"],
   },
   {
     verb: "Delivered",
     title: "Build migration",
-    outcome: "Builds from about 5 minutes to about 2 seconds.",
+    outcome: "Builds from minutes to seconds.",
     detail:
-      "Evaluated 8 build tools, then moved a Create React App codebase to Rsbuild (Rspack and SWC). Upgraded TypeScript to 5.4.5 and cleared high-severity CVEs along the way.",
-    stack: ["Rsbuild", "Rspack", "SWC", "TypeScript"],
+      "Compared the modern build tools, picked one, and moved a large React app over to it, tidying up the TypeScript setup on the way.",
+    stack: ["Rsbuild", "TypeScript"],
   },
   {
     verb: "Led",
     title: "React upgrade with coding agents",
-    outcome: "React 18.3 across 79 files, all tests passing.",
+    outcome: "A full React upgrade, every test passing.",
     detail:
-      "Ran the refactors with Claude Code agents, covering React Router v6 and React Redux v8. Now leading the Draft.js to Tiptap editor migration that unblocks React 19.",
-    stack: ["Claude Code", "React", "Tiptap"],
+      "Ran the big refactors with Claude Code agents and kept the test suite green the whole way. Next up: an editor migration that clears the path to React 19.",
+    stack: ["Claude Code", "React"],
   },
 ];
 
@@ -163,10 +163,9 @@ export const experience: Job[] = [
         dates: "Aug 2025 - Present",
         points: [
           "Led full-stack integration of a live AI assistant with human-in-the-loop review.",
-          "Led the session reliability fix that cut forced logouts by 67%.",
-          "Migrated the build to Rsbuild, from about 5 minutes to about 2 seconds.",
-          "Automated weekly branch syncs across 10 repos. Co-managed releases with zero post-release incidents.",
-          "Mentor junior engineers on AWS Lambda.",
+          "Led a sign-in reliability fix that cut unexpected sign-outs by more than half.",
+          "Moved the build to Rsbuild, from minutes to seconds.",
+          "Mentor junior engineers.",
         ],
       },
     ],
@@ -229,8 +228,8 @@ export const otherExperience = [
 
 export const services = [
   {
-    title: "LLM features in your product",
-    body: "Adding AI to an app that already has users: the model calls, the APIs around them, and the interface people actually touch.",
+    title: "LLM features in real products",
+    body: "Adding AI to apps that already have users: the model calls, the APIs around them, and the interface people actually touch.",
   },
   {
     title: "Guardrails and human review",

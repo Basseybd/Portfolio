@@ -23,7 +23,7 @@ export default function Hero() {
 
           <p className="mt-6 max-w-[31rem] text-[1.0625rem] leading-relaxed text-stone">
             Senior software engineer at Capital One and a photographer on the
-            side, based in New York. Taking on AI contract and part-time work.
+            side, based in New York.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
@@ -31,7 +31,7 @@ export default function Hero() {
               href="#contact"
               className="btn-chrome px-6 py-3.5 text-[1rem] font-medium"
             >
-              Start a project
+              Get in touch
             </a>
             <a
               href={site.resume}

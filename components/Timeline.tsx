@@ -148,15 +148,15 @@ export default function Timeline({ items }: { items: Milestone[] }) {
                 Now
               </p>
               <div className="mt-4 transition-[opacity,transform] duration-700 ease-out group-data-[pinned=true]/tl:mt-[8.25rem] group-data-[on=false]/item:translate-y-3 group-data-[on=false]/item:opacity-0">
-                <h3 className="text-[1.15rem] font-bold leading-snug">Open to AI contract work</h3>
+                <h3 className="text-[1.15rem] font-bold leading-snug">Building with AI</h3>
                 <p className="mt-3 max-w-[19rem] text-[1rem] leading-relaxed text-silver">
-                  Part-time or contract, remote or in New York.
+                  Shipping AI features, tinkering on side projects, and taking photos in between.
                 </p>
                 <a
                   href="#contact"
                   className="link mt-4 inline-block text-[1.0625rem] decoration-chrome-light hover:text-chrome-light"
                 >
-                  Start a project
+                  Say hi
                 </a>
               </div>
             </li>
