@@ -64,7 +64,6 @@ const COVERS: Record<string, string> = {
     "Graphite cover: three stacked browser tabs held on one chrome thread with four knots, and a chrome session capsule.",
   "build-migration": "Brushed aluminum cover: tapered chrome speed lines racing right into a polished post.",
   "react-upgrade-with-coding-agents": "Graphite cover: a grid of 79 polished chrome tiles, each with a check.",
-  duckbot: "Brushed aluminum cover: a chrome chat bubble beside a dot field resolving into a sphere.",
 };
 
 export const defaultWheelItems: WheelItem[] = [

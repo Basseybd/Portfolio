@@ -324,29 +324,6 @@ def motif_react_upgrade_with_coding_agents(g: dict) -> str:
     return "".join(out)
 
 
-def motif_duckbot(g: dict) -> str:
-    # A question goes in, an image comes out: a chrome speech mark beside a
-    # dithered field resolving into a sphere, the way a generated image does.
-    out = []
-    cx, cy, R = 1106, 332, 232
-    step = 22
-    for gy in range(cy - R, cy + R + 1, step):
-        for gx in range(cx - R, cx + R + 1, step):
-            dx, dy = gx - cx, gy - cy
-            d = (dx * dx + dy * dy) ** 0.5
-            if d > R:
-                continue
-            light = max(0.0, 1 - ((dx + 90) ** 2 + (dy + 90) ** 2) ** 0.5 / (R * 1.7))
-            r = 3 + 7.5 * (1 - light) * (1 - (d / R) ** 6) ** 0.5
-            out.append(f'<circle cx="{gx}" cy="{gy}" r="{r:.2f}" fill="{g["ink"]}" opacity="0.82"/>')
-    bubble = "M 640 152 H 796 a 46 46 0 0 1 46 46 V 262 a 46 46 0 0 1 -46 46 H 720 L 682 346 L 680 308 H 640 a 46 46 0 0 1 -46 -46 V 198 a 46 46 0 0 1 46 -46 Z"
-    out.append(f'<path d="{bubble}" fill="rgba(255,255,255,0.3)"/>')
-    out.append(tube(bubble, 12, g["shadow"]))
-    for k in range(3):
-        out.append(f'<circle cx="{678 + k * 40}" cy="230" r="9" fill="{g["ink"]}" opacity="0.75"/>')
-    return "".join(out)
-
-
 def motif_default(g: dict) -> str:
     return tube("M 1110 120 a 210 210 0 1 0 0.1 0", 22, g["shadow"])
 
@@ -360,7 +337,6 @@ MOTIFS = {
     "session-reliability-fix": (motif_session_reliability_fix, "graphite"),
     "build-migration": (motif_build_migration, "aluminum"),
     "react-upgrade-with-coding-agents": (motif_react_upgrade_with_coding_agents, "graphite"),
-    "duckbot": (motif_duckbot, "aluminum"),
 }
 
 

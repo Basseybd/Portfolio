@@ -12,8 +12,9 @@ in-app browser (iOS WebKit).
   two doors, **Work** and **Life**, each a pixel abstract. Hover wakes the
   pixels; a click floods the screen and carries you through.
 - `/work` The sleek portfolio, kept close to the original: hero with the glyph
-  portrait, selected work, pinned experience timeline, services, side builds,
-  a short Off the clock band that points to `/life`, contact with the orb.
+  portrait, selected work, pinned experience timeline, services, the toolkit
+  (side builds show above it only when `sideBuilds` has entries), a short Off
+  the clock band that points to `/life`, contact with the orb.
 - `/life` Quick and short. "Hey, I'm Bassey." A deck of favorite photos, links
   to `/photos` and @bassey.jpeg, and a one-line "Book a shoot".
 - `/photos` Full archive (all photos, filters, lightbox).
