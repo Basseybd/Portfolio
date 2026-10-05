@@ -347,24 +347,6 @@ def motif_duckbot(g: dict) -> str:
     return "".join(out)
 
 
-def motif_everstay(g: dict) -> str:
-    # A home and a booked stay: a chrome gable over a month grid with three
-    # nights held in a polished capsule.
-    rule, muted = g["rule"], g["muted"]
-    out = []
-    house = "M 760 330 L 930 176 L 1100 330 M 790 304 V 470 H 1070 V 304"
-    out.append(tube(house, 16, g["shadow"]))
-    out.append(f'<rect x="900" y="378" width="60" height="92" rx="6" fill="none" stroke="{muted}" stroke-width="3"/>')
-    gx, gy, cell = 1140, 176, 44
-    for r in range(5):
-        for c in range(5):
-            x, y = gx + c * cell, gy + r * cell
-            out.append(f'<circle cx="{x}" cy="{y}" r="4" fill="{muted}" opacity="0.7"/>')
-    out.append(f'<line x1="{gx - 22}" y1="{gy - 34}" x2="{gx + 4 * cell + 22}" y2="{gy - 34}" stroke="{rule}" stroke-width="2.5"/>')
-    out.append(capsule(gx + cell - 16, gy + 2 * cell - 15, 2 * cell + 32, 30, g["shadow"]))
-    return "".join(out)
-
-
 def motif_default(g: dict) -> str:
     return tube("M 1110 120 a 210 210 0 1 0 0.1 0", 22, g["shadow"])
 
@@ -379,7 +361,6 @@ MOTIFS = {
     "build-migration": (motif_build_migration, "aluminum"),
     "react-upgrade-with-coding-agents": (motif_react_upgrade_with_coding_agents, "graphite"),
     "duckbot": (motif_duckbot, "aluminum"),
-    "everstay": (motif_everstay, "graphite"),
 }
 
 

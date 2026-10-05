@@ -254,15 +254,7 @@ export const sideBuilds = [
     live: "https://discord.com/oauth2/authorize?client_id=1326301765674598591",
     liveLabel: "Add to Discord",
   },
-  {
-    title: "EverStay",
-    body: "A home rental and booking app with listings, auth, and image hosting.",
-    stack: "Next.js, TypeScript, Prisma, MongoDB, NextAuth",
-    code: "https://github.com/basseybd/everstay",
-    live: "https://everstay.vercel.app/",
-    liveLabel: "Open the app",
-  },
-  // Add the weekend AI project here once it is live.
+  // Gallop AI goes here once it is redone and live (see the GitHub repo plan).
 ];
 
 // The short band on /work that points to /life.
