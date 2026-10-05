@@ -245,17 +245,18 @@ export const services = [
   },
 ];
 
-export const sideBuilds = [
-  {
-    title: "DuckBot",
-    body: "A Discord bot that answers questions and generates images with the OpenAI and Replicate APIs.",
-    stack: "Node.js, Discord.js, OpenAI, Replicate",
-    code: "https://github.com/basseybd/discord-ai-bot",
-    live: "https://discord.com/oauth2/authorize?client_id=1326301765674598591",
-    liveLabel: "Add to Discord",
-  },
-  // Gallop AI goes here once it is redone and live (see the GitHub repo plan).
-];
+export type SideBuild = {
+  title: string;
+  body: string;
+  stack: string;
+  code: string;
+  live: string;
+  liveLabel: string;
+};
+
+// Empty for now. The Side builds block hides itself until something is here.
+// Gallop AI goes here once it is redone and live (see the GitHub repo plan).
+export const sideBuilds: SideBuild[] = [];
 
 // The short band on /work that points to /life.
 export const offTheClock = {
