@@ -44,7 +44,7 @@ export default function Contact() {
             <dt className="text-steel">GitHub</dt>
             <dd>
               <a href={site.github} target="_blank" rel="noopener noreferrer" className="link decoration-ink/40 hover:decoration-ink">
-                Basseybd
+                basseybd
               </a>
             </dd>
           </dl>
