@@ -21,8 +21,8 @@ export default function PhotosPage() {
         </h1>
         <div className="lg:col-span-5 lg:col-start-8 lg:pt-5">
           <p className="text-[1.125rem] leading-relaxed text-ink">
-            Twenty favorites from trips, long dinners, and nights out with
-            friends. All shot on a Fujifilm X100VI.
+            Favorites from trips, long dinners, and nights out with friends.
+            All shot on a Fujifilm X100VI.
           </p>
           <p className="mt-3 text-[1.0625rem] text-stone">
             More on Instagram at{" "}
