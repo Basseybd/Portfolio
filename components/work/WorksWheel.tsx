@@ -65,7 +65,6 @@ const COVERS: Record<string, string> = {
   "build-migration": "Brushed aluminum cover: tapered chrome speed lines racing right into a polished post.",
   "react-upgrade-with-coding-agents": "Graphite cover: a grid of 79 polished chrome tiles, each with a check.",
   duckbot: "Brushed aluminum cover: a chrome chat bubble beside a dot field resolving into a sphere.",
-  everstay: "Graphite cover: a chrome house outline beside a month grid with three nights held in a chrome capsule.",
 };
 
 export const defaultWheelItems: WheelItem[] = [
