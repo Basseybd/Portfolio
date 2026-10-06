@@ -17,11 +17,11 @@ export default function SideBuilds() {
                   <h3 className="font-display text-[1.5rem] font-medium">{b.title}</h3>
                   <p className="mt-2 text-[1.0625rem] leading-relaxed text-stone">{b.body}</p>
                   <p className="label mt-3 text-stone">{b.stack}</p>
-                  <p className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[1rem]">
-                    <a href={b.live} target="_blank" rel="noopener noreferrer" className="link decoration-ink hover:text-steel">
+                  <p className="mt-2 flex flex-wrap gap-x-6 text-[1rem]">
+                    <a href={b.live} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-11 items-center decoration-ink hover:text-steel">
                       {b.liveLabel}
                     </a>
-                    <a href={b.code} target="_blank" rel="noopener noreferrer" className="link decoration-rule hover:decoration-ink">
+                    <a href={b.code} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-11 items-center decoration-rule hover:decoration-ink">
                       Source on GitHub
                     </a>
                   </p>

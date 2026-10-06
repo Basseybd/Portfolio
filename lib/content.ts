@@ -254,9 +254,17 @@ export type SideBuild = {
   liveLabel: string;
 };
 
-// Empty for now. The Side builds block hides itself until something is here.
-// Gallop AI goes here once it is redone and live (see the GitHub repo plan).
-export const sideBuilds: SideBuild[] = [];
+// The Side builds block hides itself when this is empty.
+export const sideBuilds: SideBuild[] = [
+  {
+    title: "Gallop",
+    body: "Ask any AI models the same question and see where their rankings agree. Runs in your browser on your own OpenRouter account, so your keys never touch a server.",
+    stack: "Next.js 16, TypeScript, OpenRouter",
+    code: "https://github.com/Basseybd/gallop-ai",
+    live: "https://gallop-ai-eight.vercel.app",
+    liveLabel: "Try Gallop",
+  },
+];
 
 // The short band on /work that points to /life.
 export const offTheClock = {
