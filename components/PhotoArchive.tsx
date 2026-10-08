@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Lightbox from "@/components/Lightbox";
 import { photoCategories, photoSrc, photoSrcSet, type Photo, type PhotoCategory } from "@/lib/content";
 
@@ -11,12 +11,20 @@ export default function PhotoArchive({ photos }: { photos: Photo[] }) {
   const [filter, setFilter] = useState<Filter>("All");
   const [viewing, setViewing] = useState<number | null>(null);
 
-  // Keep the filter in the URL (?c=travel) so it can be shared.
+  // Keep the filter (?c=travel) and the open photo (?p=two-lines) in the URL so both can be shared.
   useEffect(() => {
-    const c = new URLSearchParams(window.location.search).get("c");
-    const match = photoCategories.find((x) => toSlug(x) === c);
-    if (match) setFilter(match);
-  }, []);
+    const params = new URLSearchParams(window.location.search);
+    let start: Filter = photoCategories.find((x) => toSlug(x) === params.get("c")) ?? "All";
+    const p = params.get("p");
+    let list = start === "All" ? photos : photos.filter((x) => x.category === start);
+    if (p && !list.some((x) => x.slug === p)) {
+      start = "All";
+      list = photos;
+    }
+    setFilter(start);
+    const at = p ? list.findIndex((x) => x.slug === p) : -1;
+    if (at >= 0) setViewing(at);
+  }, [photos]);
 
   const choose = (f: Filter) => {
     setFilter(f);
@@ -30,6 +38,18 @@ export default function PhotoArchive({ photos }: { photos: Photo[] }) {
     () => (filter === "All" ? photos : photos.filter((p) => p.category === filter)),
     [filter, photos],
   );
+
+  const view = useCallback(
+    (i: number | null) => {
+      setViewing(i);
+      const url = new URL(window.location.href);
+      if (i === null) url.searchParams.delete("p");
+      else url.searchParams.set("p", shown[i].slug);
+      window.history.replaceState(null, "", url);
+    },
+    [shown],
+  );
+  const close = useCallback(() => view(null), [view]);
 
   const filters: Filter[] = ["All", ...photoCategories];
 
@@ -61,7 +81,7 @@ export default function PhotoArchive({ photos }: { photos: Photo[] }) {
             <figure>
               <button
                 type="button"
-                onClick={() => setViewing(i)}
+                onClick={() => view(i)}
                 aria-label={`View larger: ${p.title}`}
                 className="block w-full cursor-zoom-in bg-rule"
               >
@@ -90,7 +110,7 @@ export default function PhotoArchive({ photos }: { photos: Photo[] }) {
         ))}
       </ul>
 
-      <Lightbox photos={shown} index={viewing} onClose={() => setViewing(null)} onIndex={setViewing} />
+      <Lightbox photos={shown} index={viewing} onClose={close} onIndex={view} />
     </>
   );
 }

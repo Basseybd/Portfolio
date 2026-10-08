@@ -94,6 +94,18 @@ export default function LifePage() {
             </a>
             .
           </p>
+          <p className="mt-3 max-w-[30rem] text-[0.975rem] leading-relaxed text-silver">
+            {life.otl}{" "}
+            <a
+              href={life.otlHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link whitespace-nowrap text-rice decoration-rice/50 hover:decoration-rice"
+            >
+              {life.otlCta}
+            </a>
+            .
+          </p>
         </div>
       </main>
 
