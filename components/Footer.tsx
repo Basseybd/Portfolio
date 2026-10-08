@@ -1,12 +1,15 @@
 import { site } from "@/lib/content";
 
+// Shared with the pinned bio on /life, so the links stay reachable on wide screens.
+export const footerLinks = [
+  { href: site.linkedin, label: "LinkedIn" },
+  { href: site.github, label: "GitHub" },
+  { href: site.instagram, label: "Instagram" },
+  { href: site.resume, label: "Résumé" },
+];
+
 export default function Footer() {
-  const links = [
-    { href: site.linkedin, label: "LinkedIn" },
-    { href: site.github, label: "GitHub" },
-    { href: site.instagram, label: "Instagram" },
-    { href: site.resume, label: "Résumé" },
-  ];
+  const links = footerLinks;
   return (
     <footer className="on-dark bg-graphite text-silver">
       <div className="page flex flex-wrap items-center justify-between gap-4 py-8 text-[0.9rem]">
