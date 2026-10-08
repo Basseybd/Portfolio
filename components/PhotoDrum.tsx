@@ -31,11 +31,14 @@ export default function PhotoDrum({ photos }: { photos: Photo[] }) {
   const section = useRef<HTMLDivElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const wheel = useRef<HTMLDivElement>(null);
+  const pin = useRef<HTMLDivElement>(null);
   const cards = useRef<(HTMLButtonElement | null)[]>([]);
   const [size, setSize] = useState({ w: 0, h: 0 });
   const [front, setFront] = useState(0);
   const [viewing, setViewing] = useState<number | null>(null);
   const n = photos.length;
+  // Where the stage pins: just under the sticky header.
+  const pinTop = () => (pin.current ? parseFloat(getComputedStyle(pin.current).top) || 0 : 0);
 
   const widest = Math.max(...photos.map((p) => p.width / p.height));
   const cardH = size.h ? Math.min(size.h * 0.62, (size.w * 0.84) / widest) : 0;
@@ -61,7 +64,7 @@ export default function PhotoDrum({ photos }: { photos: Photo[] }) {
     const read = () => {
       const r = section.current?.getBoundingClientRect();
       if (!r) return 0;
-      return hold(clamp(-r.top / (window.innerHeight * PER), 0, n - 1));
+      return hold(clamp((pinTop() - r.top) / (window.innerHeight * PER), 0, n - 1));
     };
 
     const draw = () => {
@@ -104,14 +107,14 @@ export default function PhotoDrum({ photos }: { photos: Photo[] }) {
     if (!el) return;
     const top = el.getBoundingClientRect().top + window.scrollY;
     const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    window.scrollTo({ top: top + clamp(i, 0, n - 1) * window.innerHeight * PER, behavior: smooth ? "smooth" : "auto" });
+    window.scrollTo({ top: top - pinTop() + clamp(i, 0, n - 1) * window.innerHeight * PER, behavior: smooth ? "smooth" : "auto" });
   };
 
   const current = photos[front];
 
   return (
-    <div ref={section} style={{ height: `calc(100svh + ${(n - 1) * PER * 100}svh)` }}>
-      <div className="sticky top-0 h-svh">
+    <div ref={section} style={{ height: `calc(100svh - 4rem + ${(n - 1) * PER * 100}svh)` }}>
+      <div ref={pin} className="sticky top-16 h-[calc(100svh-4rem)]">
         <div ref={stage} className="absolute inset-x-0 top-0 bottom-[6.5rem] overflow-hidden" style={{ perspective: `${cardH * LENS || 1000}px` }}>
           <div ref={wheel} className="absolute left-1/2 top-1/2 [transform-style:preserve-3d]">
             {cardH > 0 &&
