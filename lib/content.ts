@@ -280,7 +280,8 @@ export const offTheClock = {
 export const life = {
   hello: "Hey, I’m Bassey.",
   // Over the full-bleed intro photo. Says whose work it is, not who is in it.
-  introCredit: "Photos by Bassey Duke.",
+  // Non-breaking space: his name never splits across lines.
+  introCredit: "Photos by Bassey Duke.",
   // The /life stack (and its full-bleed intro) opens on a place, so the first
   // screen never reads as a photo of him. Swap the slug to change the lead.
   leadPhoto: "2026-midtown-sunset",
@@ -577,8 +578,12 @@ export const photos: Photo[] = [
 ];
 
 export const photoSrc = (slug: string, size: 640 | 1200 | 2400) => `/photos/${slug}-${size}.webp`;
-export const photoSrcSet = (slug: string) =>
-  `${photoSrc(slug, 640)} 640w, ${photoSrc(slug, 1200)} 1200w, ${photoSrc(slug, 2400)} 2400w`;
+// Sizes are the long edge, so a portrait file is narrower than its name says.
+// The `w` descriptors give the real width, or phones pick a file that's too small.
+export const photoSrcSet = (p: Pick<Photo, "slug" | "width" | "height">) => {
+  const ratio = Math.min(1, p.width / p.height);
+  return ([640, 1200, 2400] as const).map((s) => `${photoSrc(p.slug, s)} ${Math.round(s * ratio)}w`).join(", ");
+};
 
 export const toolkit = [
   {

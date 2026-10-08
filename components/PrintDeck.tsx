@@ -23,7 +23,7 @@ function Print({ photo, eager, top }: { photo: Photo; eager: boolean; top: boole
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={photoSrc(photo.slug, 1200)}
-          srcSet={photoSrcSet(photo.slug)}
+          srcSet={photoSrcSet(photo)}
           sizes="(min-width: 1024px) 400px, 82vw"
           width={photo.width}
           height={photo.height}

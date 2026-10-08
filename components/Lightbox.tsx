@@ -87,7 +87,7 @@ export default function Lightbox({ photos, index, onClose, onIndex }: Props) {
             <img
               key={current.slug}
               src={photoSrc(current.slug, 1200)}
-              srcSet={photoSrcSet(current.slug)}
+              srcSet={photoSrcSet(current)}
               sizes="100vw"
               width={current.width}
               height={current.height}
