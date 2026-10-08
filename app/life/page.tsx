@@ -22,7 +22,9 @@ export const viewport: Viewport = {
 };
 
 export default function LifePage() {
-  const featured = photos.filter((p) => p.featured);
+  const favorites = photos.filter((p) => p.featured);
+  const lead = favorites.find((p) => p.slug === life.leadPhoto);
+  const featured = lead ? [lead, ...favorites.filter((p) => p !== lead)] : favorites;
   const mail = `mailto:${site.email}?subject=${encodeURIComponent(life.bookingSubject)}`;
   return (
     <div className="life-page on-dark min-h-svh overflow-x-clip bg-graphite text-rice">
@@ -56,9 +58,10 @@ export default function LifePage() {
         </nav>
       </header>
 
-      <LifeIntro first={featured[0]} credit={life.introCredit} />
+      <LifeIntro first={featured[0]} credit={life.introCredit} portrait={portrait.srcThumb} />
 
-      {/* Phones get the photos right after the hello; wide screens put them beside it. */}
+      {/* Wide screens put the photos beside the hello. Phones put them right after it,
+          or first when the intro plays, so the photo never flies over the hello. */}
       <main
         id="main"
         className="page grid gap-y-14 pb-24 pt-8 sm:pt-12 lg:min-h-[calc(100svh-4rem)] lg:grid-cols-12 lg:content-center lg:gap-x-12 lg:gap-y-9 lg:pb-20 lg:pt-6"
@@ -68,10 +71,10 @@ export default function LifePage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={portrait.srcThumb}
-            width={64}
-            height={64}
-            alt={portrait.title}
-            className="mb-7 block h-16 w-16 border border-graphite-rule object-cover lg:h-20 lg:w-20"
+            width={80}
+            height={80}
+            alt={portrait.thumbAlt}
+            className="mb-7 block h-20 w-20 border border-graphite-rule object-cover lg:h-24 lg:w-24"
           />
           <h1 className="font-display text-[clamp(3.1rem,9vw,5.6rem)] font-medium leading-[0.98] tracking-[-0.025em]">
             {life.hello}
@@ -81,7 +84,7 @@ export default function LifePage() {
           <p className="mt-3 max-w-[30rem] text-[1.0625rem] leading-relaxed text-silver">{life.body}</p>
         </div>
 
-        <div className="lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1 lg:self-center">
+        <div className="life-deck lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1 lg:self-center">
           <PrintDeck photos={featured} />
         </div>
 

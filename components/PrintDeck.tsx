@@ -16,10 +16,10 @@ const REST = [
   { x: -8, y: 32, r: -1.6 },
 ];
 
-function Print({ photo, eager, slot }: { photo: Photo; eager: boolean; slot: boolean }) {
+function Print({ photo, eager, top }: { photo: Photo; eager: boolean; top: boolean }) {
   return (
     <>
-      <div data-life-slot={slot || undefined} className="relative aspect-[2/3] w-full overflow-hidden bg-graphite">
+      <div data-life-top={top || undefined} className="relative aspect-[2/3] w-full overflow-hidden bg-graphite">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={photoSrc(photo.slug, 1200)}
@@ -127,9 +127,10 @@ export default function PrintDeck({ photos }: { photos: Photo[] }) {
         }}
         className="relative mx-auto w-full max-w-[25rem] outline-offset-8"
       >
-        {/* Spacer that gives the stack its height. */}
+        {/* Spacer that gives the stack its height. Its photo box is exactly where the top
+            print rests, and it never moves, so the /life intro lands on it. */}
         <div aria-hidden className="invisible bg-paper p-3 pb-5 sm:p-4 sm:pb-6">
-          <div className="aspect-[2/3] w-full" />
+          <div data-life-slot className="aspect-[2/3] w-full" />
           <div className="pt-4 text-[1.05rem] leading-tight">&nbsp;</div>
         </div>
 
@@ -168,7 +169,7 @@ export default function PrintDeck({ photos }: { photos: Photo[] }) {
                   transition: dragging && isTop ? "none" : "transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease",
                 }}
               >
-                <Print photo={p} eager={pos < 2} slot={isTop} />
+                <Print photo={p} eager={pos < 2} top={isTop} />
               </figure>
             );
           })}
