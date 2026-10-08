@@ -22,9 +22,8 @@ export const viewport: Viewport = {
 };
 
 export default function LifePage() {
-  const favorites = photos.filter((p) => p.featured);
-  const lead = favorites.find((p) => p.slug === life.leadPhoto);
-  const featured = lead ? [lead, ...favorites.filter((p) => p !== lead)] : favorites;
+  // His portrait first, then the favorites in their set order.
+  const featured = [life.me, ...photos.filter((p) => p.featured)];
   const mail = `mailto:${site.email}?subject=${encodeURIComponent(life.bookingSubject)}`;
   return (
     <div className="life-page on-dark min-h-svh overflow-x-clip bg-graphite text-rice">

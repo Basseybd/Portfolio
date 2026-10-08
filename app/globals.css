@@ -73,6 +73,18 @@ html:not([data-intro]) [data-preloader] {
   }
 }
 /* /life photo drum. Reduced motion and no-JS visitors get the print deck instead. */
+.drum-hint svg {
+  animation: drum-nudge 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+@keyframes drum-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
 .life-deck-alt {
   display: none;
 }

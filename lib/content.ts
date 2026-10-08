@@ -276,9 +276,20 @@ export const offTheClock = {
 // /life: quick and short.
 export const life = {
   hello: "Hey, I’m Bassey.",
-  // The /life favorites open on a place, so the first photo never reads as a
-  // photo of him. Swap the slug to change the lead.
-  leadPhoto: "2026-midtown-sunset",
+  // First card on the /life drum, captioned as him, so everything after reads as
+  // his work. Not in `photos`, so it stays out of /photos and its count.
+  me: {
+    slug: "bassey-duke",
+    accent: "#9A8F88",
+    width: 2075,
+    height: 2075,
+    title: "That’s me",
+    place: "",
+    category: "Portraits",
+    settings: "",
+    alt: portrait.alt,
+    featured: false,
+  } satisfies Photo,
   lead: "I write software for a living and take photos on the side.",
   body: "Mostly trips, long dinners with friends, and New York after dark, all on a Fujifilm X100VI. Here’s some of my favorite work.",
   booking: "Want photos like these? I take on a few portrait and event shoots around New York.",
