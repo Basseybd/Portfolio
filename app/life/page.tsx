@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
-import Footer from "@/components/Footer";
+import Footer, { footerLinks } from "@/components/Footer";
 import PhotoDrum from "@/components/PhotoDrum";
 import PrintDeck from "@/components/PrintDeck";
 import { WorldLink } from "@/components/transition/WorldTransition";
@@ -104,6 +104,17 @@ export default function LifePage() {
             .
           </p>
           </div>
+          {/* Wide, tall-enough screens only: the footer links stay in reach while the photos roll.
+              Phones and short laptops get the footer at the end. */}
+          <ul className="absolute bottom-7 left-0 hidden gap-x-6 text-[0.9rem] text-silver lg:[@media(min-height:800px)]:flex">
+            {footerLinks.map((l) => (
+              <li key={l.label}>
+                <a href={l.href} target="_blank" rel="noopener noreferrer" className="transition-colors duration-200 hover:text-rice">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-14 lg:col-span-7 lg:mt-0">

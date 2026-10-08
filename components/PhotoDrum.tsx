@@ -59,6 +59,9 @@ export default function PhotoDrum({ photos }: { photos: Photo[] }) {
     if (!cardH) return;
     let pos = -1;
     let target = 0;
+    // On phones the finger pushes the page up, so the drum rolls up with it: the
+    // next photo comes from below. On wide screens it rolls down from the top.
+    const dir = window.matchMedia("(max-width: 1023.98px)").matches ? -1 : 1;
     let raf = 0;
 
     const read = () => {
@@ -76,7 +79,7 @@ export default function PhotoDrum({ photos }: { photos: Photo[] }) {
         const card = cards.current[i];
         if (!card) continue;
         const d = i - pos;
-        const deg = d * STEP;
+        const deg = d * STEP * dir;
         card.style.transform = `translateX(${bow * (1 - Math.cos(rad(deg)))}px) rotateX(${deg}deg) translateZ(${drumR}px)`;
         card.style.opacity = Math.abs(d) > CULL ? "0" : "1";
         card.style.zIndex = String(Math.round(100 - Math.abs(d) * 10));
