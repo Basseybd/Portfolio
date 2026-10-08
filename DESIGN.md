@@ -15,9 +15,15 @@ in-app browser (iOS WebKit).
   portrait, selected work, pinned experience timeline, services, the toolkit
   (side builds show above it only when `sideBuilds` has entries), a short Off
   the clock band that points to `/life`, contact with the orb.
-- `/life` Quick and short. "Hey, I'm Bassey." A deck of favorite photos, links
-  to `/photos` and @bassey.jpeg, and a one-line "Book a shoot".
-- `/photos` Full archive (all photos, filters, lightbox).
+- `/life` Quick and short. Opens on the deck's top print full bleed, credited
+  "Photos by Bassey Duke." with his face beside it; scrolling shrinks it into
+  the deck (`LifeIntro`, transform only, skipped for reduced motion). The lead
+  print is a place (`life.leadPhoto`) so the first screen never reads as a photo
+  of him. Then his portrait and "Hey, I'm Bassey.", links to `/photos` and
+  @bassey.jpeg, a one-line "Book a shoot", and a line pointing to OTL. On phones
+  with motion on, the deck comes before the hello.
+- `/photos` Full archive (all photos, filters, lightbox). `?c=` keeps the filter
+  and `?p=` the open photo in the URL.
 
 ## Tokens (tailwind.config.ts)
 

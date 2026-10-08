@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import LifeIntro from "@/components/LifeIntro";
 import PrintDeck from "@/components/PrintDeck";
 import { WorldLink } from "@/components/transition/WorldTransition";
-import { life, photos, site } from "@/lib/content";
+import { life, photos, portrait, site } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Life | Bassey Duke",
@@ -21,11 +22,13 @@ export const viewport: Viewport = {
 };
 
 export default function LifePage() {
-  const featured = photos.filter((p) => p.featured);
+  const favorites = photos.filter((p) => p.featured);
+  const lead = favorites.find((p) => p.slug === life.leadPhoto);
+  const featured = lead ? [lead, ...favorites.filter((p) => p !== lead)] : favorites;
   const mail = `mailto:${site.email}?subject=${encodeURIComponent(life.bookingSubject)}`;
   return (
     <div className="life-page on-dark min-h-svh overflow-x-clip bg-graphite text-rice">
-      <header className="page flex h-16 items-center justify-between">
+      <header className="page relative z-10 flex h-16 items-center justify-between">
         <Link href="/" className="font-display text-[1.3rem] font-medium tracking-[-0.01em]">
           {site.name}
         </Link>
@@ -55,12 +58,24 @@ export default function LifePage() {
         </nav>
       </header>
 
-      {/* Phones get the photos right after the hello; wide screens put them beside it. */}
+      <LifeIntro first={featured[0]} credit={life.introCredit} portrait={portrait.srcThumb} />
+
+      {/* Wide screens put the photos beside the hello. Phones put them right after it,
+          or first when the intro plays, so the photo never flies over the hello. */}
       <main
         id="main"
         className="page grid gap-y-14 pb-24 pt-8 sm:pt-12 lg:min-h-[calc(100svh-4rem)] lg:grid-cols-12 lg:content-center lg:gap-x-12 lg:gap-y-9 lg:pb-20 lg:pt-6"
       >
         <div className="lg:col-span-5 lg:row-start-1 lg:self-end">
+          {/* His own face, so the people in the prints aren't mistaken for him. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={portrait.srcThumb}
+            width={80}
+            height={80}
+            alt={portrait.thumbAlt}
+            className="mb-7 block h-20 w-20 border border-graphite-rule object-cover lg:h-24 lg:w-24"
+          />
           <h1 className="font-display text-[clamp(3.1rem,9vw,5.6rem)] font-medium leading-[0.98] tracking-[-0.025em]">
             {life.hello}
           </h1>
@@ -69,7 +84,7 @@ export default function LifePage() {
           <p className="mt-3 max-w-[30rem] text-[1.0625rem] leading-relaxed text-silver">{life.body}</p>
         </div>
 
-        <div className="lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1 lg:self-center">
+        <div className="life-deck lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1 lg:self-center">
           <PrintDeck photos={featured} />
         </div>
 

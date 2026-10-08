@@ -88,7 +88,7 @@ export default function PhotoArchive({ photos }: { photos: Photo[] }) {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={photoSrc(p.slug, 1200)}
-                  srcSet={photoSrcSet(p.slug)}
+                  srcSet={photoSrcSet(p)}
                   sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 92vw"
                   width={p.width}
                   height={p.height}

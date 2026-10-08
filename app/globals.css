@@ -72,6 +72,66 @@ html:not([data-intro]) [data-preloader] {
     display: none;
   }
 }
+/* /life intro. Until scripts run, the photo is a plain first screen that scrolls
+   away like any hero (so a slow or failed load never hides the page). Once
+   measured, it pins to the viewport and moves by transform only. */
+.life-intro {
+  position: relative;
+}
+/* Pushes the page to the fold. */
+.life-intro-spacer {
+  height: calc(100svh - 4rem);
+}
+.life-intro-layer {
+  position: absolute;
+  top: -4rem;
+  left: 0;
+  right: 0;
+  height: 100svh;
+  z-index: 5;
+  overflow: hidden;
+  pointer-events: none;
+}
+.life-intro[data-ready] .life-intro-layer {
+  position: fixed;
+  inset: 0;
+  height: auto;
+}
+.life-intro-box {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.life-intro[data-ready] .life-intro-box {
+  inset: auto;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+}
+.life-intro[data-done="true"] .life-intro-layer {
+  visibility: hidden;
+}
+/* Dense enough under the nav and the credit to keep them readable on any of the favorites. */
+.life-intro-scrim-top {
+  background: linear-gradient(to bottom, rgb(23 24 26 / 0.92) 0, rgb(23 24 26 / 0.88) 4rem, rgb(23 24 26 / 0) 9rem);
+}
+.life-intro-scrim-bottom {
+  background: linear-gradient(to top, rgb(23 24 26 / 0.92) 0, rgb(23 24 26 / 0.72) 40%, rgb(23 24 26 / 0) 100%);
+}
+html[data-life-intro="active"] [data-life-top] img {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .life-intro {
+    display: none;
+  }
+}
+/* With the intro playing, phones show the stack first so the photo never flies over the hello. */
+@media (prefers-reduced-motion: no-preference) and (max-width: 1023.98px) {
+  .life-deck {
+    order: -1;
+  }
+}
 /* Graphite pages keep the overscroll graphite too. */
 body:has(.life-page) {
   background-color: #17181a;
