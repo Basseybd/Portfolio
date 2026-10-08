@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Lightbox from "@/components/Lightbox";
 import { photoSrc, photoSrcSet, type Photo } from "@/lib/content";
-import { setLifeTop } from "@/lib/lifeTop";
 
 // A loose stack of prints on the table. Drag or swipe the top print away to
 // see the next one; tap it to view it full screen.
@@ -16,10 +15,10 @@ const REST = [
   { x: -8, y: 32, r: -1.6 },
 ];
 
-function Print({ photo, eager, top }: { photo: Photo; eager: boolean; top: boolean }) {
+function Print({ photo, eager }: { photo: Photo; eager: boolean }) {
   return (
     <>
-      <div data-life-top={top || undefined} className="relative aspect-[2/3] w-full overflow-hidden bg-graphite">
+      <div className="relative aspect-[2/3] w-full overflow-hidden bg-graphite">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={photoSrc(photo.slug, 1200)}
@@ -55,9 +54,6 @@ export default function PrintDeck({ photos }: { photos: Photo[] }) {
     reduce.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }, []);
 
-  useEffect(() => {
-    setLifeTop(photos[order[0]]);
-  }, [order, photos]);
 
   const advance = useCallback(() => setOrder((o) => [...o.slice(1), o[0]]), []);
   const back = useCallback(() => setOrder((o) => [o[o.length - 1], ...o.slice(0, -1)]), []);
@@ -127,10 +123,9 @@ export default function PrintDeck({ photos }: { photos: Photo[] }) {
         }}
         className="relative mx-auto w-full max-w-[25rem] outline-offset-8"
       >
-        {/* Spacer that gives the stack its height. Its photo box is exactly where the top
-            print rests, and it never moves, so the /life intro lands on it. */}
+        {/* Spacer that gives the stack its height. */}
         <div aria-hidden className="invisible bg-paper p-3 pb-5 sm:p-4 sm:pb-6">
-          <div data-life-slot className="aspect-[2/3] w-full" />
+          <div className="aspect-[2/3] w-full" />
           <div className="pt-4 text-[1.05rem] leading-tight">&nbsp;</div>
         </div>
 
@@ -169,7 +164,7 @@ export default function PrintDeck({ photos }: { photos: Photo[] }) {
                   transition: dragging && isTop ? "none" : "transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease",
                 }}
               >
-                <Print photo={p} eager={pos < 2} top={isTop} />
+                <Print photo={p} eager={pos < 2} />
               </figure>
             );
           })}
