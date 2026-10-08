@@ -281,6 +281,10 @@ export const life = {
   booking: "Want photos like these? I take on a few portrait and event shoots around New York.",
   bookingCta: "Book a shoot",
   bookingSubject: "Photo shoot",
+  otl: "I also co-run OTL, a Brooklyn events collective.",
+  otlCta: "See what’s next",
+  // Swap for OTL's own domain once it has one.
+  otlHref: "https://otl-kappa.vercel.app",
 };
 
 export const photoCategories = ["Travel", "Nights out", "Portraits", "City"] as const;
