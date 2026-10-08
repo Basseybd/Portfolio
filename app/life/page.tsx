@@ -104,17 +104,20 @@ export default function LifePage() {
             .
           </p>
           </div>
-          {/* Wide, tall-enough screens only: the footer links stay in reach while the photos roll.
-              Phones and short laptops get the footer at the end. */}
-          <ul className="absolute bottom-7 left-0 hidden gap-x-6 text-[0.9rem] text-silver lg:[@media(min-height:800px)]:flex">
-            {footerLinks.map((l) => (
-              <li key={l.label}>
-                <a href={l.href} target="_blank" rel="noopener noreferrer" className="transition-colors duration-200 hover:text-rice">
-                  {l.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          {/* Wide, tall-enough screens: the footer lives here, pinned with the bio, so the links
+              stay in reach while the photos roll. Phones and short laptops get the footer at the end. */}
+          <div className="absolute bottom-7 left-0 hidden items-center gap-x-6 text-[0.9rem] text-silver lg:[@media(min-height:800px)]:flex">
+            <p>&copy; {new Date().getFullYear()} Bassey Duke</p>
+            <ul className="flex gap-x-6">
+              {footerLinks.map((l) => (
+                <li key={l.label}>
+                  <a href={l.href} target="_blank" rel="noopener noreferrer" className="transition-colors duration-200 hover:text-rice">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="mt-14 lg:col-span-7 lg:mt-0">
@@ -130,10 +133,13 @@ export default function LifePage() {
         </div>
       </main>
 
-      <div className="page">
-        <div aria-hidden className="h-px bg-graphite-rule" />
+      {/* Shown only where the pinned row above isn't, so it never appears twice. */}
+      <div className="lg:[@media(min-height:800px)]:hidden">
+        <div className="page">
+          <div aria-hidden className="h-px bg-graphite-rule" />
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }
