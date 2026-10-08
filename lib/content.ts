@@ -21,6 +21,8 @@ export const site = {
 export const portrait = {
   src: "/bassey-duke.jpg",
   srcSmall: "/bassey-duke-1200.jpg",
+  // Face crop for /life, so visitors can tell him apart from the people in his photos.
+  srcThumb: "/bassey-duke-192.webp",
   width: 2075,
   height: 2075,
   alt: "Bassey Duke smiling in a white shirt beside an orange globe lamp, photographed on film with flash",
@@ -276,6 +278,8 @@ export const offTheClock = {
 // /life: quick and short.
 export const life = {
   hello: "Hey, I’m Bassey.",
+  // Over the full-bleed intro photo. Says whose work it is, not who is in it.
+  introCredit: "Photos by Bassey Duke.",
   lead: "I write software for a living and take photos on the side.",
   body: "Mostly trips, long dinners with friends, and New York after dark, all on a Fujifilm X100VI. Here’s some of my favorite work.",
   booking: "Want photos like these? I take on a few portrait and event shoots around New York.",

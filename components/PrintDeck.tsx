@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Lightbox from "@/components/Lightbox";
 import { photoSrc, photoSrcSet, type Photo } from "@/lib/content";
+import { setLifeTop } from "@/lib/lifeTop";
 
 // A loose stack of prints on the table. Drag or swipe the top print away to
 // see the next one; tap it to view it full screen.
@@ -15,10 +16,10 @@ const REST = [
   { x: -8, y: 32, r: -1.6 },
 ];
 
-function Print({ photo, eager }: { photo: Photo; eager: boolean }) {
+function Print({ photo, eager, slot }: { photo: Photo; eager: boolean; slot: boolean }) {
   return (
     <>
-      <div className="relative aspect-[2/3] w-full overflow-hidden bg-graphite">
+      <div data-life-slot={slot || undefined} className="relative aspect-[2/3] w-full overflow-hidden bg-graphite">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={photoSrc(photo.slug, 1200)}
@@ -53,6 +54,10 @@ export default function PrintDeck({ photos }: { photos: Photo[] }) {
   useEffect(() => {
     reduce.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }, []);
+
+  useEffect(() => {
+    setLifeTop(photos[order[0]]);
+  }, [order, photos]);
 
   const advance = useCallback(() => setOrder((o) => [...o.slice(1), o[0]]), []);
   const back = useCallback(() => setOrder((o) => [o[o.length - 1], ...o.slice(0, -1)]), []);
@@ -163,7 +168,7 @@ export default function PrintDeck({ photos }: { photos: Photo[] }) {
                   transition: dragging && isTop ? "none" : "transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease",
                 }}
               >
-                <Print photo={p} eager={pos < 2} />
+                <Print photo={p} eager={pos < 2} slot={isTop} />
               </figure>
             );
           })}

@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import LifeIntro from "@/components/LifeIntro";
 import PrintDeck from "@/components/PrintDeck";
 import { WorldLink } from "@/components/transition/WorldTransition";
-import { life, photos, site } from "@/lib/content";
+import { life, photos, portrait, site } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Life | Bassey Duke",
@@ -25,7 +26,7 @@ export default function LifePage() {
   const mail = `mailto:${site.email}?subject=${encodeURIComponent(life.bookingSubject)}`;
   return (
     <div className="life-page on-dark min-h-svh overflow-x-clip bg-graphite text-rice">
-      <header className="page flex h-16 items-center justify-between">
+      <header className="page relative z-10 flex h-16 items-center justify-between">
         <Link href="/" className="font-display text-[1.3rem] font-medium tracking-[-0.01em]">
           {site.name}
         </Link>
@@ -55,12 +56,23 @@ export default function LifePage() {
         </nav>
       </header>
 
+      <LifeIntro first={featured[0]} credit={life.introCredit} />
+
       {/* Phones get the photos right after the hello; wide screens put them beside it. */}
       <main
         id="main"
         className="page grid gap-y-14 pb-24 pt-8 sm:pt-12 lg:min-h-[calc(100svh-4rem)] lg:grid-cols-12 lg:content-center lg:gap-x-12 lg:gap-y-9 lg:pb-20 lg:pt-6"
       >
         <div className="lg:col-span-5 lg:row-start-1 lg:self-end">
+          {/* His own face, so the people in the prints aren't mistaken for him. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={portrait.srcThumb}
+            width={64}
+            height={64}
+            alt={portrait.title}
+            className="mb-7 block h-16 w-16 border border-graphite-rule object-cover lg:h-20 lg:w-20"
+          />
           <h1 className="font-display text-[clamp(3.1rem,9vw,5.6rem)] font-medium leading-[0.98] tracking-[-0.025em]">
             {life.hello}
           </h1>

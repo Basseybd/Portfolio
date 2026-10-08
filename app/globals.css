@@ -72,6 +72,42 @@ html:not([data-intro]) [data-preloader] {
     display: none;
   }
 }
+/* /life intro. Before scripts run the photo simply covers the screen; once
+   measured, the box takes the print's size and moves by transform only. */
+/* Pushes the page to the fold so the real heading arrives after the overlay one has gone. */
+.life-intro-spacer {
+  height: calc(100svh - 4rem);
+}
+.life-intro-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  overflow: hidden;
+  pointer-events: none;
+}
+.life-intro-box {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.life-intro[data-ready] .life-intro-box {
+  inset: auto;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+.life-intro[data-done="true"] .life-intro-layer {
+  visibility: hidden;
+}
+html[data-life-intro="active"] [data-life-slot] img {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .life-intro {
+    display: none;
+  }
+}
 /* Graphite pages keep the overscroll graphite too. */
 body:has(.life-page) {
   background-color: #17181a;
