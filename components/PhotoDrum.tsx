@@ -40,8 +40,15 @@ export default function PhotoDrum({ photos }: { photos: Photo[] }) {
   // Where the stage pins: just under the sticky header.
   const pinTop = () => (pin.current ? parseFloat(getComputedStyle(pin.current).top) || 0 : 0);
 
-  const widest = Math.max(...photos.map((p) => p.width / p.height));
-  const cardH = size.h ? Math.min(size.h * 0.62, (size.w * 0.84) / widest) : 0;
+  // Sized for a 2:3 print; a wider photo (the square portrait, a landscape) gets
+  // shorter instead of making every card smaller.
+  const maxW = size.w * 0.84;
+  const cardH = size.h ? Math.min(size.h * 0.62, maxW / (2 / 3)) : 0;
+  const dims = (p: Photo) => {
+    const r = p.width / p.height;
+    const h = Math.min(cardH, maxW / r);
+    return { w: h * r, h };
+  };
   const drumR = cardH * DRUM;
   const bow = cardH * BOW * clamp(size.w / 700, 0.45, 1);
 
@@ -122,7 +129,7 @@ export default function PhotoDrum({ photos }: { photos: Photo[] }) {
           <div ref={wheel} className="absolute left-1/2 top-1/2 [transform-style:preserve-3d]">
             {cardH > 0 &&
               photos.map((p, i) => {
-                const w = cardH * (p.width / p.height);
+                const { w, h } = dims(p);
                 const isFront = i === front;
                 return (
                   <button
@@ -136,7 +143,7 @@ export default function PhotoDrum({ photos }: { photos: Photo[] }) {
                     aria-label={`View larger: ${p.title}`}
                     onClick={() => (isFront ? setViewing(i) : go(i))}
                     className="absolute block cursor-zoom-in overflow-hidden bg-graphite shadow-[0_24px_48px_-20px_rgba(0,0,0,0.8)] [backface-visibility:hidden]"
-                    style={{ width: w, height: cardH, marginLeft: -w / 2, marginTop: -cardH / 2, opacity: i === 0 ? 1 : 0 }}
+                    style={{ width: w, height: h, marginLeft: -w / 2, marginTop: -h / 2, opacity: i === 0 ? 1 : 0 }}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -154,6 +161,17 @@ export default function PhotoDrum({ photos }: { photos: Photo[] }) {
                   </button>
                 );
               })}
+          </div>
+          {/* Tells people the photos turn with scroll; gone once they start. */}
+          <div
+            aria-hidden
+            className="drum-hint pointer-events-none absolute bottom-3 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-[0.8rem] text-silver transition-opacity duration-500"
+            style={{ opacity: front === 0 && cardH > 0 ? 1 : 0 }}
+          >
+            <span>Scroll to see more</span>
+            <svg viewBox="0 0 14 22" className="h-[22px] w-[14px]" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 1v19M1.5 14.5 7 20l5.5-5.5" />
+            </svg>
           </div>
         </div>
 
