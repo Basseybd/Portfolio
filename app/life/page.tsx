@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import Footer from "@/components/Footer";
-import LifeIntro from "@/components/LifeIntro";
+import PhotoDrum from "@/components/PhotoDrum";
 import PrintDeck from "@/components/PrintDeck";
 import { WorldLink } from "@/components/transition/WorldTransition";
-import { life, photos, portrait, site } from "@/lib/content";
+import { life, photos, site } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Life | Bassey Duke",
@@ -58,37 +58,17 @@ export default function LifePage() {
         </nav>
       </header>
 
-      <LifeIntro first={featured[0]} credit={life.introCredit} portrait={portrait.srcThumb} />
-
-      {/* Wide screens put the photos beside the hello. Phones put them right after it,
-          or first when the intro plays, so the photo never flies over the hello. */}
-      <main
-        id="main"
-        className="page grid gap-y-14 pb-24 pt-8 sm:pt-12 lg:min-h-[calc(100svh-4rem)] lg:grid-cols-12 lg:content-center lg:gap-x-12 lg:gap-y-9 lg:pb-20 lg:pt-6"
-      >
-        <div className="lg:col-span-5 lg:row-start-1 lg:self-end">
-          {/* His own face, so the people in the prints aren't mistaken for him. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={portrait.srcThumb}
-            width={80}
-            height={80}
-            alt={portrait.thumbAlt}
-            className="mb-7 block h-20 w-20 border border-graphite-rule object-cover lg:h-24 lg:w-24"
-          />
-          <h1 className="font-display text-[clamp(3.1rem,9vw,5.6rem)] font-medium leading-[0.98] tracking-[-0.025em]">
+      {/* Bio on the left, pinned on wide screens; the favorites roll past on the right as you scroll.
+          Phones get the bio first, then the photos. */}
+      <main id="main" className="page grid pb-24 pt-8 sm:pt-12 lg:-mt-16 lg:grid-cols-12 lg:gap-x-12 lg:pb-0 lg:pt-0">
+        <div className="lg:sticky lg:top-0 lg:col-span-5 lg:flex lg:h-svh lg:flex-col lg:justify-center lg:self-start lg:py-16">
+          <h1 className="font-display text-[clamp(3.1rem,9vw,5.2rem)] font-medium leading-[0.98] tracking-[-0.025em]">
             {life.hello}
           </h1>
-          <div aria-hidden className="chrome mt-8 h-[2px] w-24" />
-          <p className="mt-7 max-w-[30rem] text-[1.1875rem] leading-relaxed text-rice">{life.lead}</p>
+          <div aria-hidden className="chrome mt-7 h-[2px] w-24" />
+          <p className="mt-6 max-w-[30rem] text-[1.1875rem] leading-relaxed text-rice">{life.lead}</p>
           <p className="mt-3 max-w-[30rem] text-[1.0625rem] leading-relaxed text-silver">{life.body}</p>
-        </div>
-
-        <div className="life-deck lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1 lg:self-center">
-          <PrintDeck photos={featured} />
-        </div>
-
-        <div className="lg:col-span-5 lg:row-start-2 lg:self-start">
+          <div className="mt-8">
           <div className="flex flex-wrap gap-3">
             <Link href="/photos" className="btn-chrome px-6 py-3.5 text-[1rem] font-medium">
               See all {photos.length} photos
@@ -121,6 +101,19 @@ export default function LifePage() {
             </a>
             .
           </p>
+          </div>
+        </div>
+
+        <div className="mt-14 lg:col-span-7 lg:mt-0">
+          <noscript>
+            <style>{`.life-drum{display:none}.life-deck-alt{display:block}`}</style>
+          </noscript>
+          <div className="life-drum">
+            <PhotoDrum photos={featured} />
+          </div>
+          <div className="life-deck-alt lg:py-24">
+            <PrintDeck photos={featured} />
+          </div>
         </div>
       </main>
 
