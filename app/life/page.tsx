@@ -28,7 +28,8 @@ export default function LifePage() {
   const mail = `mailto:${site.email}?subject=${encodeURIComponent(life.bookingSubject)}`;
   return (
     <div className="life-page on-dark min-h-svh overflow-x-clip bg-graphite text-rice">
-      <header className="page relative z-10 flex h-16 items-center justify-between">
+      <header className="sticky top-0 z-30 bg-graphite">
+        <div className="page flex h-16 items-center justify-between">
         <Link href="/" className="font-display text-[1.3rem] font-medium tracking-[-0.01em]">
           {site.name}
         </Link>
@@ -56,12 +57,13 @@ export default function LifePage() {
             </li>
           </ul>
         </nav>
+        </div>
       </header>
 
       {/* Bio on the left, pinned on wide screens; the favorites roll past on the right as you scroll.
           Phones get the bio first, then the photos. */}
-      <main id="main" className="page grid pb-24 pt-8 sm:pt-12 lg:-mt-16 lg:grid-cols-12 lg:gap-x-12 lg:pb-0 lg:pt-0">
-        <div className="lg:sticky lg:top-0 lg:col-span-5 lg:flex lg:h-svh lg:flex-col lg:justify-center lg:self-start lg:py-16">
+      <main id="main" className="page grid pb-24 pt-8 sm:pt-12 lg:grid-cols-12 lg:gap-x-12 lg:pb-0 lg:pt-0">
+        <div className="lg:sticky lg:top-16 lg:col-span-5 lg:flex lg:h-[calc(100svh-4rem)] lg:flex-col lg:justify-center lg:self-start lg:py-16">
           <h1 className="font-display text-[clamp(3.1rem,9vw,5.2rem)] font-medium leading-[0.98] tracking-[-0.025em]">
             {life.hello}
           </h1>
